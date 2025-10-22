@@ -1,0 +1,12 @@
+name: Notify on any file change
+
+on:
+  push:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send ntfy notification
+        run: |
+          curl -s -d "Commit: $GITHUB_SHA by $GITHUB_ACTOR - $GITHUB_EVENT_HEAD_COMMIT_MESSAGE" https://ntfy.sh/imgRenalAppChange
