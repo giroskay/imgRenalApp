@@ -9,4 +9,5 @@ jobs:
     steps:
       - name: Send ntfy notification
         run: |
-          curl -s -d "Commit: $GITHUB_SHA by $GITHUB_ACTOR - $GITHUB_EVENT_HEAD_COMMIT_MESSAGE" https://ntfy.sh/imgRenalAppChange
+          COMMIT_MESSAGE=$(jq -r '.head_commit.message' "$GITHUB_EVENT_PATH")
+          curl -s -d "$COMMIT_MESSAGE" https://ntfy.sh/imgRenalAppChange
